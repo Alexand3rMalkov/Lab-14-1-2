@@ -11,6 +11,8 @@ int put_elements(double* ptr_array, int n);
 double* calc_elements(double* ptr_array, int n);
 double sum_elements(double* ptr_array, int begin, int end);
 int find_element(double* ptr_array, int n, double element);
+int MaxValue(double* ptr_array, int k);
+int firstNumber(double* ptr_array, int A);
 
 int main() {
 
@@ -20,7 +22,7 @@ int main() {
 	double accumPositive = 0, accumNegative = 0, numberPos = 0, numberNeg = 0;
 
 	setlocale(LC_ALL, "rus");
-	printf("Введите размер массива: ");
+	printf("Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°: ");
 	scanf("%d", &size);
 
 	full_elements(array, size);
@@ -28,17 +30,25 @@ int main() {
 	calc_elements(array, size);
 	put_elements(array, size);
 
-	printf("Введите индекс 'Begin' для суммирования элементов массива:\n");
+	printf("Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ 'Begin' РґР»СЏ СЃСѓРјРјРёСЂРѕРІР°РЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°:\n");
 	scanf("%d", &beg);
-	printf("Введите индекс 'End' для суммирования элементов массива:\n");
+	printf("Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ 'End' РґР»СЏ СЃСѓРјРјРёСЂРѕРІР°РЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°:\n");
 	scanf("%d", &end);
 
-	printf("Сумма элементов массива на отрезке от %d до %d = %.2lf\n", beg, end, sum_elements(array, beg, end));
+	printf("РЎСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° РЅР° РѕС‚СЂРµР·РєРµ РѕС‚ %d РґРѕ %d = %.2lf\n", beg, end, sum_elements(array, beg, end));
 
-	printf("Введите элемент, индекс которого надо найти:\n");
+	printf("Р’РІРµРґРёС‚Рµ СЌР»РµРјРµРЅС‚, РёРЅРґРµРєСЃ РєРѕС‚РѕСЂРѕРіРѕ РЅР°РґРѕ РЅР°Р№С‚Рё:\n");
 	scanf("%lf", &element);
-	printf("Элементу %lf принадлежит индекс %d\n", element, find_element(array, size, element));
-
+	printf("Р­Р»РµРјРµРЅС‚Сѓ %lf РїСЂРёРЅР°РґР»РµР¶РёС‚ РёРЅРґРµРєСЃ %d\n", element, find_element(array, size, element));
+	int k;
+	printf("Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ K\n");
+	scanf("%d", &k);
+	printf("РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РјР°СЃСЃРёРІР°, РЅР°С…РѕРґСЏС‰РµРіРѕСЃСЏ РґРѕ Р·Р°РґР°РЅРЅРѕР№ РїРѕР·РёС†РёРё K РІРєР»СЋС‡РёС‚РµР»СЊРЅРѕ =  %d\n", MaxValue(array, k));
+	
+	int A;
+	printf("Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ A\n");
+	scanf("%d", &A);
+	printf("РџРµСЂРІС‹Р№ РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ СЌР»РµРјРµРЅС‚Р° РЅРµ СЂР°РІРЅРѕРіРѕ Рђ - %d\n", firstNumber(array, A));
 }
 
 
@@ -62,7 +72,7 @@ double* full_elements(double* ptr_array, int n) {
 int put_elements(double* ptr_array, int n) {
 
 	for (int i = 0; i < n; i++) {
-		printf("%lf\n", ptr_array[i]);
+		printf("[%d] = %lf\n",i, ptr_array[i]);
 	}
 }
 
@@ -91,4 +101,23 @@ int find_element(double* ptr_array, int n, double element) {
 		}
 	}
 	return -1;
+}
+
+int MaxValue(double* ptr_array, int k) {
+	double max = 0;
+	int i = 0;
+	for (; i <= k; i++) {
+		if (ptr_array[i] > max) {
+			max = ptr_array[i];
+		}
+	}
+	return max;
+}
+
+int firstNumber(double* ptr_array, int A) {
+	int i = 0;
+	for (; ptr_array[i] != A; i++) {
+
+		return i;
+	}
 }
